@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Store API</title>
+</head>
+<body>
+
+    <h2>Product Search</h2>
+
+    <input type="number" id="productId" placeholder="Enter Product ID">
+    <button onclick="getProduct()">Search</button>
+
+    <br><br>
+
+    <img id="productImg" width="200">
+
+    <h3 id="productTitle"></h3>
+
+    <p id="productPrice"></p>
+
+    <script>
+
+        async function getProduct() {
+
+            let id = document.getElementById("productId").value;
+
+            let response = await fetch(
+                `https://fakestoreapi.com/products/${id}`
+            );
+
+            let data = await response.json();
+
+            document.getElementById("productImg").src = data.image;
+
+            document.getElementById("productTitle").innerHTML = data.title;
+
+            document.getElementById("productPrice").innerHTML =
+                "Price: $" + data.price;
+
+        }
+
+    </script>
+
+</body>
+</html>

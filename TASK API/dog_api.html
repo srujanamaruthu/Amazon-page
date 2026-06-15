@@ -1,0 +1,36 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Random Dog Image</title>
+</head>
+<body>
+
+    <button onclick="getDog()">Get Random Dog</button>
+
+    <br><br>
+
+    <img id="dogImg" width="300">
+
+    <script>
+        async function getDog() {
+            try {
+               const response = await fetch(
+    "https://dog.ceo/api/breed/retriever/golden/images/random"
+);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch dog image");
+                }
+
+                const data = await response.json();
+
+                document.getElementById("dogImg").src = data.message;
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
